@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3307
--- Время создания: Июн 07 2023 г., 10:39
+-- Хост: 127.0.0.1:3306
+-- Время создания: Июн 27 2023 г., 18:13
 -- Версия сервера: 8.0.30
--- Версия PHP: 8.1.9
+-- Версия PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,7 @@ CREATE TABLE `bookings` (
   `comment` varchar(150) NOT NULL,
   `amount` varchar(150) NOT NULL,
   `status` int NOT NULL,
+  `reason` varchar(300) NOT NULL,
   `date_submission` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -42,10 +43,10 @@ CREATE TABLE `bookings` (
 -- Дамп данных таблицы `bookings`
 --
 
-INSERT INTO `bookings` (`id_booking`, `client`, `event`, `date_booking`, `comment`, `amount`, `status`, `date_submission`) VALUES
-(7, 11, 3, '2023-06-15', '-', '12', 2, '2023-06-07 06:18:02'),
-(8, 10, 1, '2023-06-08', '-', '3', 1, '2023-06-07 06:20:28'),
-(9, 10, 4, '2023-06-21', 'Хочу капибару', '2', 2, '2023-06-07 06:46:03');
+INSERT INTO `bookings` (`id_booking`, `client`, `event`, `date_booking`, `comment`, `amount`, `status`, `reason`, `date_submission`) VALUES
+(34, 20, 7, '2023-06-30', 'Леху сбить хочу', '1', 2, '-', '2023-06-27 17:51:55'),
+(35, 20, 3, '2023-06-29', 'Шары катать', '10', 3, 'Шаров нет, кончились', '2023-06-27 17:56:31'),
+(36, 21, 8, '2023-06-29', '-', '1', 3, 'в этот день выходной', '2023-06-27 18:04:56');
 
 -- --------------------------------------------------------
 
@@ -70,8 +71,7 @@ INSERT INTO `events` (`id_event`, `title`, `photo`, `price`, `description`) VALU
 (3, 'Боулинг', '1192b3d51b4bd82cd73cac5fd48fe15c.jpg', '600', 'Боулинг - это не просто интересное соревнование, это всегда яркие впечатления и незабываемые воспоминания. <br> Для комфортной игры количество игроков на одной дорожке – 5 человек <br> Максимальное количество игроков на одной дорожке – 7 человек <br> Неоплаченная бронь отменяется за 15 минут до начала игры <br> Продление времени игры возможно только при наличии свободных дорожек'),
 (4, 'Контактный зоопарк', '1675366270_phonoteka-org-p-oboi-kapibara-na-rabochii-stol-vkontakte-26.jpg', '550', 'Для современного городского жителя мир дикой природы почти всегда в диковинку.  <br> Зоопарки — это наш редкий шанс понаблюдать за животными, кроме домашних. Они несут не только развлекательную, но в том числе и важную воспитательную функцию.'),
 (7, 'Картинг', 'orig.jpg', '300', 'Картинг — это вид гонки на специальных малолитражных гоночных автомобилях с маленькими колёсами. Такие мини-авто называются картами. Они состоят из рамы, сидения и двигателя. При этом у них нет кузова и упругой подвески. А ещё карты не знают что такое задний ход.'),
-(8, 'Американские горки', 'a81b05fbd1d6dd17b1bb96d0829980e0.jpg', '300', 'Этот аттракцион подойдет тем, кто жаждет экстрима, но предпочитает постепенный накал эмоций. Высота конструкции горки составляет 8 метров, а петли и виражи на трассе заставят сердце биться значительно быстрее, тренируя Ваш разум и волю перед подступом к новым вершинам'),
-(10, 'Лазертаг', 'lasertag_laserland.jpg', '500', 'Настоящий мини экшн-квест с лазерным лабиринтом, интерактивным тиром и аттракционом.\r\n\r\nВы - космические авантюристы, которые оказались на борту инопланетного корабля! Преодолейте лазерную систему безопасности с десятками лазерных лучей, стараясь не задеть их. Как в шпионских фильмах. Получите доступ к арсеналу с оружием и дайте бой по инопланетным мишеням! На что способны Вы? Проявите свою ловкость, гибкость, реакцию и скорость.');
+(8, 'Американские горки', 'a81b05fbd1d6dd17b1bb96d0829980e0.jpg', '300', 'Этот аттракцион подойдет тем, кто жаждет экстрима, но предпочитает постепенный накал эмоций. Высота конструкции горки составляет 8 метров, а петли и виражи на трассе заставят сердце биться значительно быстрее, тренируя Ваш разум и волю перед подступом к новым вершинам');
 
 -- --------------------------------------------------------
 
@@ -135,11 +135,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `name`, `surname`, `password`, `email`, `phone`, `photo`, `roles`) VALUES
-(2, 'admin', 'admin', 'admin', 'admin', 'admin', 'unknownUser.png', 1),
-(10, 'Даня', 'Махмутов', '727', 'da@mail.ru', '+79613690452', '6526591210.webp', 2),
-(11, 'Иван', 'Иванов', '555', '12@mail.ru', '+78005553535', '6442355251.webp', 2),
-(13, 'dssds', 'sdsd', '555', 'da@mail.ru', '+79613690452', 'unknownUser.png', 2),
-(14, 'dssds', 'sdsd', '555', 'da@mail.ru', '+79613690452', 'unknownUser.png', 2);
+(2, 'Даня ', 'Махмутов', 'Admin12345', 'dmahmutov12@gmail.com', '89961038964', 'unknownUser.png', 1),
+(19, 'Алексей', 'Смирнов', '22848343Qwr3', 'danyatortikov@gmail.com', '89373215140', '1-120-128b.png', 2),
+(20, 'Кирилл', 'Тихонов', 'QwertyZxc2004', 'kirilltihonov22@gmail.com', '89170414864', 'bubuh-1.gif', 2),
+(21, 'Арслан', 'Заиткулов', 'QwertyZxc2003', 'zaitkulov4@gmail.com', '89991314324', 'WVzqlHlxM3k.png', 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -187,13 +186,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id_booking` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_booking` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `events`
 --
 ALTER TABLE `events`
-  MODIFY `id_event` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_event` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -211,7 +210,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -221,9 +220,9 @@ ALTER TABLE `users`
 -- Ограничения внешнего ключа таблицы `bookings`
 --
 ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`client`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`status`) REFERENCES `status` (`id_status`),
-  ADD CONSTRAINT `bookings_ibfk_4` FOREIGN KEY (`event`) REFERENCES `events` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bookings_ibfk_4` FOREIGN KEY (`event`) REFERENCES `events` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_5` FOREIGN KEY (`client`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `users`

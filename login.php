@@ -7,8 +7,8 @@ session_start();
     <div class="login-container" style="text-align: center ;">
         <h2>Авторизация</h2>
         <form action="/login.php" method="POST">
-            <input type="text" placeholder="Почта пользователя" name="Email" required>
-            <input type="password" placeholder="Пароль" name="password" pattern=".{8,}" required>
+            <input type="email" placeholder="Почта пользователя" name="Email" required>
+            <input type="password" placeholder="Пароль" name="password" pattern=".{8,} required>
             <button type="submit" style = "margin-bottom:10px;">Войти</button>
         </form>
         <a href="/registration.php">Регистрация</a>

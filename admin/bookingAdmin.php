@@ -4,7 +4,7 @@ $events = "select * from bookings join events on bookings.event = events.id_even
 $resultQuery = mysqli_query($con, $events);
 ?>
 <div class="container">
-    <table class="table">
+    <table class="table" style="width: 100%;">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -16,7 +16,7 @@ $resultQuery = mysqli_query($con, $events);
                 <th scope="col">Комментарий</th>
                 <th scope="col">Причина отказа</th>
                 <th scope="col">Статус</th>
-                
+
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -39,7 +39,7 @@ $resultQuery = mysqli_query($con, $events);
                     <td><?= $eventsQuery['comment'] ?></td>
                     <td><?= $eventsQuery['reason'] ?></td>
                     <td><?= $eventsQuery['name_status'] ?></td>
-                    
+
                     <?
                     if ($eventsQuery['status'] == 3 || $eventsQuery['status'] == 2) {
                     ?>
@@ -49,12 +49,16 @@ $resultQuery = mysqli_query($con, $events);
                     ?>
                         <td>
                             <form action="./bookingStatus.php" method="post" id="no">
-                                <input type="hidden" name = "no_id" value="<?= $eventsQuery['id_booking'] ?>">
-                                <input type="text" name="reason">
+                                <label for="reason">Причина</label>
+                                <input type="hidden" name="no_id" value="<?= $eventsQuery['id_booking'] ?>">
+                                <input type="text" name="reason" required>
                             </form>
+
                         </td>
-                        <td><button type="submit" class="btn btn-danger btn-sm" form="no">Отклонить</button></td>
-                        <td><a href="/admin/bookingStatus.php?yes=<?= $eventsQuery['id_booking'] ?>" type="button" class="btn btn-success btn-sm">Принять</a></td>
+                        <td>
+                            <button type="submit" class="btn btn-danger btn-sm" form="no">Отклонить</button>
+                            <a href="/admin/bookingStatus.php?yes=<?= $eventsQuery['id_booking'] ?>" type="button" class="btn btn-success btn-sm" style="margin-top: 5px;">Принять</a>
+                        </td>
                     <?
                     }
                     ?>
@@ -65,4 +69,5 @@ $resultQuery = mysqli_query($con, $events);
             ?>
         </tbody>
     </table>
+
 </div>
