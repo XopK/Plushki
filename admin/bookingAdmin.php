@@ -1,6 +1,6 @@
 <?php
 require_once "../connect.php";
-$events = "select * from bookings join events on bookings.event = events.id_event join status on bookings.status = status.id_status join users on client = id_user order by id_booking";
+$events = "select * from bookings join events on bookings.event = events.id_event join status on bookings.status = status.id_status join users on client = id_user order by id_booking order by desc date_booking";
 $resultQuery = mysqli_query($con, $events);
 ?>
 <div class="container">
