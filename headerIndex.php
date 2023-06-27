@@ -32,10 +32,11 @@ session_start();
 
         <div class="login-buttons">
             <?php
+            $name = !empty($_SESSION['name'])?$_SESSION['name']:false;
             if (!empty($_SESSION['id_user'])) {
                 if ($_SESSION['id_user'] != 2) {
             ?>
-                    <a href='/account.php'><button class='register'>Личный кабинет</button></a>
+                    <a href='/account.php'><button class='register'>Привет, <?=$name?></button></a>
                     <a href='/logout.php'><button class='register'>Выйти</button></a>
                 <?
                 }
