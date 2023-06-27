@@ -99,7 +99,6 @@ $result2 = mysqli_query($con, $Booking);
 
         </div>
     </div>
-
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"  style="width: 70%;">
@@ -124,7 +123,7 @@ $result2 = mysqli_query($con, $Booking);
                 <label for="count">Количество гостей</label>
                 <input type="text" placeholder="Количество людей" pattern="^[ 0-9]+$" name="quantity" required>
                 <label for="comment">Комментарий</label>
-                <textarea id="description" name="description" placeholder="Комментарий" style="margin-top: 10px; padding:10px 0 0 20px;"></textarea>
+                <textarea id="description" name="description" placeholder="Комментарий" pattern="[A-Za-zА-Яа-яЁё0-9\s]+" style="margin-top: 10px; padding:10px 0 0 20px;"></textarea>
                 <button type="submit">Подать заявку</button>
             </form>
         </div>

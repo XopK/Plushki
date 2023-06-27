@@ -17,7 +17,7 @@ if ($_POST) {
     $result = mysqli_query($con, $query);
 
     if ($result) {
-        echo "<script>alert('Успех'); location.href = '/admin';</script>";
+        echo "<script>alert('Мероприятие добавлено'); location.href = '/admin';</script>";
     } else {
         echo "<script>alert('Ошибка');</script>";
         echo mysqli_error($con);

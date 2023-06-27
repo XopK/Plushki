@@ -8,11 +8,11 @@ if(!empty($_POST)){
     $descrtoption = !empty($_POST['description'])?$_POST['description']:"-";
     $date_create = date("Y-m-d H:i:s");
 
-    $query = "INSERT INTO `bookings`(`id_booking`, `client`, `event`, `date_booking`, `comment`, `amount`, `status`,`date_submission`)
-    VALUES (null,'$id_user_booking','$event','$date_booking','$descrtoption','$quantity', 1, '$date_create')";
+    $query = "INSERT INTO `bookings`(`id_booking`, `client`, `event`, `date_booking`, `comment`, `amount`, `status`, `reason`, `date_submission`)
+    VALUES (null,'$id_user_booking','$event','$date_booking','$descrtoption','$quantity', 1, '-', '$date_create')";
     $result = mysqli_query($con, $query);
     if ($result) {
-        echo "<script>alert('Успех'); location.href = '/';</script>";
+        echo "<script>alert('Заявка подана'); location.href = '/';</script>";
     } else {
         echo "<script>alert('Ошибка');</script>";
         echo mysqli_error($con);

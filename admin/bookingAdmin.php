@@ -14,7 +14,9 @@ $resultQuery = mysqli_query($con, $events);
                 <th scope="col">Дата и время подачи</th>
                 <th scope="col">Количество гостей</th>
                 <th scope="col">Комментарий</th>
+                <th scope="col">Причина отказа</th>
                 <th scope="col">Статус</th>
+                
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -35,7 +37,9 @@ $resultQuery = mysqli_query($con, $events);
                     <td><?= $newDate2 ?></td>
                     <td><?= $eventsQuery['amount'] ?></td>
                     <td><?= $eventsQuery['comment'] ?></td>
+                    <td><?= $eventsQuery['reason'] ?></td>
                     <td><?= $eventsQuery['name_status'] ?></td>
+                    
                     <?
                     if ($eventsQuery['status'] == 3 || $eventsQuery['status'] == 2) {
                     ?>
@@ -43,7 +47,13 @@ $resultQuery = mysqli_query($con, $events);
                     <?
                     } else {
                     ?>
-                        <td><a href="/admin/bookingStatus.php?no=<?= $eventsQuery['id_booking'] ?>" type="button" class="btn btn-danger btn-sm">Отклонить</a></td>
+                        <td>
+                            <form action="./bookingStatus.php" method="post" id="no">
+                                <input type="hidden" name = "no_id" value="<?= $eventsQuery['id_booking'] ?>">
+                                <input type="text" name="reason">
+                            </form>
+                        </td>
+                        <td><button type="submit" class="btn btn-danger btn-sm" form="no">Отклонить</button></td>
                         <td><a href="/admin/bookingStatus.php?yes=<?= $eventsQuery['id_booking'] ?>" type="button" class="btn btn-success btn-sm">Принять</a></td>
                     <?
                     }

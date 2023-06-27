@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once "../connect.php";
-$no = !empty($_GET['no']) ? $_GET['no'] : false;
+$no = $_POST['no_id'];
+$reason = $_POST['reason'];
 $yes = !empty($_GET['yes']) ? $_GET['yes'] : false;
 
 if (isset($no) || isset($yes)) {
@@ -14,13 +15,14 @@ if (isset($no) || isset($yes)) {
 
         $to = "$email";
         $subject = "Статус заявки";
-        $message = "Ваша заявка отклонена";
+        $message = "Ваша заявка отклонена
+        по причине: $reason";
         $mailheaders = "Content-type:text/plain;charset=windows-1251rn";
         $mailheaders .= "From: dmahmutov12@gmail.com";
         $mailheaders .= "Reply-To: dmahmutov12@gmail.com";
         mail($to, $subject, $message, $mailheaders);
 
-        $query = "UPDATE `bookings` SET `status`= 3 WHERE id_booking = '$no'";
+        $query = "UPDATE `bookings` SET `status`= 3, `reason` = '$reason' WHERE id_booking = '$no'";
         $result = mysqli_query($con, $query);
     } else {
 
@@ -36,7 +38,7 @@ if (isset($no) || isset($yes)) {
         $result2 = mysqli_query($con, $query2);
     }
     if ($result || $result2) {
-        echo "<script>alert('Успех'); location.href = '/admin';</script>";
+        echo "<script>alert('Заявка изменена'); location.href = '/admin';</script>";
     } else {
         echo "<script>alert('Ошибка');</script>";
     }

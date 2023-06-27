@@ -33,7 +33,7 @@ include "header.php";
                 <label for="count">Количество гостей</label>
                 <input type="text" placeholder="Количество людей" pattern="^[ 0-9]+$" name="quantity" required>
                 <label for="comment">Комментарий</label>
-                <textarea id="description" name="description" required placeholder="Комментарий" style="margin-top: 10px; padding:10px 0 0 20px; height:200px;"></textarea>
+                <textarea id="description" name="description" pattern="[A-Za-zА-Яа-яЁё0-9\s]+" required placeholder="Комментарий" style="margin-top: 10px; padding:10px 0 0 20px; height:200px;"></textarea>
                 <button class="btn btn-success" type="submit" style="margin-top: 15px; width:150px;">Отправить</button>
             </form>
         </div>

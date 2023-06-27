@@ -7,17 +7,17 @@ require_once "connect.php";
     <h2 style="margin:20px 0 15px 0;font-family: 'Comfortaa', cursive;text-align:center;">Регистрация</h2>
     <form method="post" action="/registration.php">
 
-        <input type="text" placeholder="Введите имя" name="name" required>
+        <input type="text" placeholder="Введите имя" name="name" pattern="[A-Za-zА-Яа-яЁё]{2,}" required>
 
 
-        <input type="text" placeholder="Введите фамилию" name="surname" required>
-
+        <input type="text" placeholder="Введите фамилию" name="surname" pattern="[A-Za-zА-Яа-яЁё]{2,}" required>
+     
 
         <input type="email" placeholder="Введите email" name="email" required>
 
-        <input type="text" placeholder="Введите номер телефона" name="phone" required>
-
-        <input type="password" placeholder="Введите пароль" name="password" required>
+        <input type="text" placeholder="Введите номер телефона" name="phone" pattern="[0-9]{11}" required>
+        
+        <input type="password" placeholder="Введите пароль" name="password" pattern=".{8,}" required>
 
         <button type="submit" style = "margin-bottom:10px;">Зарегистрироваться</button>
     </form>
@@ -46,7 +46,7 @@ if (!empty($_POST)) {
         $query = "insert into users(id_user, name, surname, password, email, phone, photo, roles) values (null, '$name', '$surname', '$password', '$email', '$phone', 'unknownUser.png', '2')";
         $result = mysqli_query($con, $query);
         if ($result) {
-            echo "<script>alert('Успех'); location.href = '/';</script>";
+            echo "<script>alert('Успешная регистрация'); location.href = '/';</script>";
         } else { ?>
             <div class='alert alert-danger' role='alert' id='block-to-remove'>
                 <button type='button' class='btn-close' aria-label='Close' onclick='removeBlock()'></button>

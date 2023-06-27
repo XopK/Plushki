@@ -8,7 +8,7 @@ session_start();
         <h2>Авторизация</h2>
         <form action="/login.php" method="POST">
             <input type="text" placeholder="Почта пользователя" name="Email" required>
-            <input type="password" placeholder="Пароль" name="password" required>
+            <input type="password" placeholder="Пароль" name="password" pattern=".{8,}" required>
             <button type="submit" style = "margin-bottom:10px;">Войти</button>
         </form>
         <a href="/registration.php">Регистрация</a>
@@ -26,9 +26,9 @@ if (!empty($_POST)) {
         $_SESSION['id_user'] = $user_info['id_user'];
         $_SESSION['name'] = $user_info['name'];
         if ($user_info['roles'] == 1) {
-            echo "<script>location.href = '/admin';</script>";
+            echo "<script>alert('Здраствуй админ');location.href = '/admin';</script>";
         } else {
-            echo "<script>location.href = '/';</script>";
+            echo "<script>alert('Успешная авторизация');location.href = '/';</script>";
         }
     } else { ?>
         <div class='alert alert-danger' role='alert' id='block-to-remove'>

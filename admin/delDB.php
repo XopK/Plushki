@@ -6,8 +6,8 @@ $query = "delete from events where id_event = '$del' ";
 $result = mysqli_query($con, $query);
 
 if ($result) {
-    echo "<script>alert('Успех'); location.href = '/admin';</script>";
+    echo "<script>alert('Мероприятие удалено'); location.href = '/admin';</script>";
 } else {
-    echo "<script>alert('Ошибка');</script>";
+    echo "<script>alert('Ошибка удаления');</script>";
     echo mysqli_error($con);
 }

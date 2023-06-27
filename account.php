@@ -19,9 +19,9 @@ $resultQuery = mysqli_query($con, $events);
                     <input type="file" id="photo" name="photo" style="margin-top: 15px;">
                 </div>
                 <div class="inputUser">
-                    <label for="name">Имя</label><input type="text" value="<?= $info['name'] ?>" name="name">
-                    <label for="surname">Фамилия</label><input type="text" value="<?= $info['surname'] ?>" name="surname">
-                    <label for="email">Почта</label><input type="email" value="<?= $info['email'] ?>" name="email">
+                    <label for="name">Имя</label><input type="text" value="<?= $info['name'] ?>"name="name" >
+                    <label for="surname">Фамилия</label><input type="text" value="<?= $info['surname'] ?>" name="surname" >
+                    <label for="email">Почта</label><input type="email" value="<?= $info['email'] ?>" name="email" >
                     <label for="phone">Телефон</label><input type="text" value="<?= $info['phone'] ?>" name="phone">
                     <button type="submit" class="btn btn-success btn-lg" id="buttonFormUser">Редактировать</button>
                 </div>
@@ -59,6 +59,7 @@ $resultQuery = mysqli_query($con, $events);
                         <?
                         if ($eventsQuery['status'] == 3 || $eventsQuery['status'] == 2) {
                             if ($eventsQuery['status'] == 3){?>
+                            <td>Причина: <?= $eventsQuery['reason'] ?></td>
                             <?
                             }
                         } else {
@@ -94,7 +95,7 @@ if (!empty($_POST)) {
     $result3 = mysqli_query($con, $query3);
 
     if ($result3) {
-        echo "<script>alert('Успех'); location.href = '/account.php';</script>";
+        echo "<script>alert('Данные изменены'); location.href = '/account.php';</script>";
     } else {
         echo "<script>alert('Ошибка');</script>";
         echo mysqli_error($con);
