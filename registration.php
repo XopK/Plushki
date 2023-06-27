@@ -32,9 +32,9 @@ if (!empty($_POST)) {
     $password = $_POST['password'];
 
     $check = "select * from users where email = '$email' limit 1";
-    $checkResult = mysqli_query($con, $check);
+    $checkResult = mysqli_fetch_array(mysqli_query($con, $check));
 
-    if ($checkResult) {
+    if (!empty($checkResult)){
         ?>
         <div class='alert alert-warning' role='alert' id='block-to-remove'>
                 <button type='button' class='btn-close' aria-label='Close' onclick='removeBlock()'></button>
