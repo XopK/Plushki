@@ -7,7 +7,7 @@
         <label for="photo">Фото</label><br>
         <input type="file" id="photo" name="photo" required><br>
         <label for="description">Описание</label><br>
-        <textarea id="description" name="description" pattern="[A-Za-zА-Яа-яЁё0-9\s]+ required></textarea><br>
+        <textarea id="description" name="description" pattern="[A-Za-zА-Яа-яЁё0-9\s]+" required></textarea><br>
         <input type="submit" value="Добавить мероприятие">
     </form>
 </div>

@@ -24,7 +24,9 @@
             </ul>
             <a href="../" class="home">На главную</a>
         </div>
-        <section id="output"></section>
+        <section id="output"><h1>
+            Выберите страницу
+        </h1></section>
     </div>
 </body>
 
