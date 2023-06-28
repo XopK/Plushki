@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +33,13 @@ session_start();
 
         <div class="login-buttons">
             <?php
-            $name = !empty($_SESSION['name'])?$_SESSION['name']:false;
             if (!empty($_SESSION['id_user'])) {
+                $id_user_name = $_SESSION['id_user'];
+                $name = "select * from users where id_user = '$id_user_name'";
+                $res_name = mysqli_fetch_array(mysqli_query($con, $name));
                 if ($_SESSION['id_user'] != 2) {
             ?>
-                    <a href='/account.php'><button class='register'>Привет, <?=$name?></button></a>
+                    <a href='/account.php'><button class='register'>Привет, <?=$res_name['name']?></button></a>
                     <a href='/logout.php'><button class='register'>Выйти</button></a>
                 <?
                 }

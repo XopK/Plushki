@@ -19,10 +19,10 @@ $resultQuery = mysqli_query($con, $events);
                     <input type="file" id="photo" name="photo" style="margin-top: 15px;">
                 </div>
                 <div class="inputUser">
-                    <label for="name">Имя</label><input type="text" value="<?= $info['name'] ?>"name="name" >
-                    <label for="surname">Фамилия</label><input type="text" value="<?= $info['surname'] ?>" name="surname" >
+                    <label for="name">Имя</label><input type="text" pattern="[A-Za-zА-Яа-яЁё]{2,}" value="<?= $info['name'] ?>"name="name" >
+                    <label for="surname">Фамилия</label><input type="text" pattern="[A-Za-zА-Яа-яЁё]{2,}" value="<?= $info['surname'] ?>" name="surname" >
                     <label for="email">Почта</label><input type="email" value="<?= $info['email'] ?>" name="email" >
-                    <label for="phone">Телефон</label><input type="text" value="<?= $info['phone'] ?>" name="phone">
+                    <label for="phone">Телефон</label><input type="text" value="<?= $info['phone'] ?>" pattern="[0-9]{11}" name="phone">
                     <button type="submit" class="btn btn-success btn-lg" id="buttonFormUser">Редактировать</button>
                 </div>
             </form>
