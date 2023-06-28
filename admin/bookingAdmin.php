@@ -4,6 +4,7 @@ $events = "select * from bookings join events on bookings.event = events.id_even
 $resultQuery = mysqli_query($con, $events);
 ?>
 <div class="container">
+    <h2>Список заявок</h2>
     <table class="table" style="width: 100%;">
         <thead>
             <tr>

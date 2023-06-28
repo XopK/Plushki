@@ -6,17 +6,19 @@ require_once "connect.php";
 <div class="login-container" style="text-align: center ;">
     <h2 style="margin:20px 0 15px 0;font-family: 'Comfortaa', cursive;text-align:center;">Регистрация</h2>
     <form method="post" action="/registration.php">
-
+        <label for="name">Имя</label>
         <input type="text" placeholder="Введите имя" name="name" pattern="[A-Za-zА-Яа-яЁё]{2,}" required>
 
-
+        <label for="name">Фамилия</label>
         <input type="text" placeholder="Введите фамилию" name="surname" pattern="[A-Za-zА-Яа-яЁё]{2,}" required>
      
-
+        <label for="name">Email</label>
         <input type="email" placeholder="Введите email" name="email" required>
 
+        <label for="name">Номер телефона</label>
         <input type="text" placeholder="Введите номер телефона" name="phone" pattern="[0-9]{11}" required>
         
+        <label for="name">Пароль</label>
         <input type="password" placeholder="Введите пароль" name="password" pattern=".{8,}" required>
 
         <button type="submit" style = "margin-bottom:10px;">Зарегистрироваться</button>

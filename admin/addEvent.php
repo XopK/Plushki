@@ -1,4 +1,5 @@
 <div class="container addEvent">
+    <h2>Добавить мероприятие</h2>
     <form action="/admin/addEventDB.php" method="post" enctype="multipart/form-data">
         <label for="title">Название</label>
         <input type="text" id="title" pattern="[A-Za-zА-Яа-яЁё]{2,}" name="title" required>
