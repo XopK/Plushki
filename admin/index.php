@@ -22,7 +22,7 @@
                 <li><a href="/admin/editEvent.php">Редактировать мероприятия</a></li>
                 <li><a href="/admin/bookingAdmin.php">Заявки</a></li>
             </ul>
-            <a href="../" class="home">На главную</a>
+            <a href="../logout.php" class="home">Выйти</a>
         </div>
         <section id="output"><h1>
             Выберите страницу
